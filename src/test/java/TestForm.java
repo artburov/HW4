@@ -20,6 +20,7 @@ public class TestForm {
         Configuration.startMaximized = true;
     }
 
+
     @Test
     public void exampleJUnit() {
         //открыть сайт GitHub
