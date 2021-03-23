@@ -1,13 +1,8 @@
-package tests;
-
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-
 import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
@@ -15,32 +10,54 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestForm {
+
     @BeforeAll
-    static void fullScreen() {
+    static void setup() {
         Configuration.startMaximized = true;
     }
 
 
     @Test
-    public void exampleJUnit() {
-        //открыть сайт GitHub
-        open("https://github.com/");
+    void homeWork() {
+        open("https://demoqa.com/automation-practice-form");
 
-        //найти Selenide
-        $("[name=q]").setValue("selenide").pressEnter();
 
-        //открыть страничку Selenide на сайте GitHub
-        $(".repo-list").find(byText("selenide/")).click();
+        $("#firstName").setValue("Wanda");
+        $("#lastName").setValue("Maximoff");
+        $("#userEmail").setValue("ScarletWitch@avenger.com");
+        $("[for='gender-radio-2']").click();
+        $("#userNumber").setValue("9862010101");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionByValue("2");
+        $(".react-datepicker__year-select").selectOptionByValue("1964");
+        $("[aria-label='Choose Wednesday, March 4th, 1964']").click();
+        $("#subjectsInput").setValue("Chemistry");
+        $("#subjectsInput").pressEnter();
+        $("#subjectsInput").setValue("History");
+        $("#subjectsInput").pressEnter();
+        $("[for='hobbies-checkbox-2']").click();
+        $("#uploadPicture").uploadFromClasspath("ScarletWitch.jpg");
+        $("#currentAddress").setValue("New York City");
+        $("#react-select-3-input").setValue("Haryana");
+        $("#react-select-3-input").pressEnter();
+        $("#react-select-4-input").setValue("Karnal");
+        $("#react-select-4-input").pressEnter();
+        $("#submit").click();
 
-        //перейти в раздел Wiki проекта
-        $("[data-content=Wiki]").click();
+        $(".modal-content").shouldHave(text("Wanda"),
+                text("Maximoff"),
+                text("ScarletWitch@avenger.com"),
+                text("Female"),
+                text("9862010101"),
+                text("04 March,1964"),
+                text("Chemistry, History"),
+                text("Reading"),
+                text("ScarletWitch.jpg"),
+                text("New York City"),
+                text("Haryana"),
+                text("Karnal"));
 
-        //проверить,есть ли в списке страница SoftAssertions
-        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
 
-        //перейти к SoftAssertions
-        $(".wiki-rightbar").find(byText("SoftAssertions")).click();
-        //проверить, есть ли на странице пример кода для JUnit5
-        $(".markdown-body").shouldHave(text("Using JUnit5 extend test class"));
+
     }
 }
