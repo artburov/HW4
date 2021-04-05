@@ -62,8 +62,5 @@ public class TestReg {
                 text("New York City"),
                 text("Haryana"),
                 text("Karnal"));
-
-
-
     }
 }
