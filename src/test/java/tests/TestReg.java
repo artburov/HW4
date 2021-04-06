@@ -22,7 +22,6 @@ public class TestReg {
     String userphone = "9862010101";
     String useraddress = "New York City";
 
-
     @Test
     void homeWork() {
         open("https://demoqa.com/automation-practice-form");
@@ -62,8 +61,6 @@ public class TestReg {
                 text("New York City"),
                 text("Haryana"),
                 text("Karnal"));
-
-
 
     }
 }
